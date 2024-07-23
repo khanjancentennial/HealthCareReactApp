@@ -162,7 +162,7 @@ function Login() {
       const userData = new User(response.data.user); // assuming the API response contains user data
       setUser(userData);
     } catch (err) {
-      setError('Login failed. Please check your credentials and try again.');
+      setError('Login failed. Please check your credentials and try again.Error: ${err.message}');
     } finally {
       setLoading(false);
     }
