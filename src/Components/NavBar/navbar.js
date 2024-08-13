@@ -1,5 +1,7 @@
 import React from 'react'
 import './navbar.css'
+import { NavLink } from 'react-router-dom';
+
 
 function NavBar({ user, onLogout }) {
   return (
@@ -12,24 +14,26 @@ function NavBar({ user, onLogout }) {
         <ul className="navbar-menu">
           
             <li> 
-              <a href='/' className= {window.location.pathname === "/" ?'navbar-menu active' :'navbar-menu'}>Home</a>
+              <NavLink to='/' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>
+              
+              Home</NavLink>
               </li>
               <li> 
-              <a href='/about' className= {window.location.pathname === "/about" ?'navbar-menu active' :'navbar-menu'}>About</a>
+              <NavLink to='/about' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>About</NavLink>
               </li>
               <li> 
-              <a href='history' className= {window.location.pathname === "/history" ?'navbar-menu active' :'navbar-menu'}>History</a>
+              <NavLink to='history' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>History</NavLink>
               </li>
               <li> 
-              <a href='/contactus' className= {window.location.pathname === "/contactus" ?'navbar-menu active' :'navbar-menu'}>Contact US</a>
+              <NavLink to='/contactus' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>Contact US</NavLink>
               </li>
               {user ? (
-          <li><a href="#" onClick={onLogout}>Logout</a></li>
+          <li><NavLink to="#" onClick={onLogout}>Logout</NavLink></li>
         ) :(
               <li> 
-              <a href='/login' className= {window.location.pathname === "/login" ?'navbar-menu active' :'navbar-menu'}>Login</a>
+              <NavLink to='/login' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>Login</NavLink>
               </li>)}
-              
+
               {/* <Link to="/" className= {window.location.pathname === "/" ?'navbar-menu active' :'navbar-menu'}> Home </Link></li>
             <li> <Link to="/about"className={location.pathname === "/about" ?'navbar-menu active' :'navbar-menu'}> About </Link></li>
             <li> <Link to="/history"className={location.pathname === "/history" ?'navbar-menu active' :'navbar-menu'}> History </Link></li>
