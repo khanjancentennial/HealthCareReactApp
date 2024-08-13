@@ -5,18 +5,26 @@ import History from './Components/History/history';
 import About from './Components/About/about';
 import ContactUs from './Components/Contact US/contactus';
 import Login from './Components/Login/login';
+import Dashboard from './Components/Dashboard/dashboard'; // Import your protected component
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
 
 
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-
+const ProtectedRoute = ({ element, user }) => {
+  return user ? element : <Navigate to="/login" />;
+};
 
 function App() {
-  const [user, setUser] = useState(null); // Manage user state globally
+
+
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const handleLogout = () => {
+    localStorage.removeItem('user'); // Remove user data from localStorage
     setUser(null); // Clear user state on logout
   };
   // let component
@@ -63,6 +71,7 @@ function App() {
         <Route path="/history" element={<History />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
     </Router>
   );

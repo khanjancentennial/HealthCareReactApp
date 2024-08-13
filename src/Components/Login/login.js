@@ -160,6 +160,7 @@ function Login() {
         }
       );
       const userData = new User(response.data.user); // assuming the API response contains user data
+      localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
     } catch (err) {
       setError(err.toString());
@@ -169,10 +170,11 @@ function Login() {
   };
 
   useEffect(() => {
-    if (user) {
-      setAction('Success');
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
-  }, [user]);
+  }, [setUser]);
 
   if (user) {
     return <div>Welcome {user.firstName}</div>;
