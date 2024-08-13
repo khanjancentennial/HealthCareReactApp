@@ -28,8 +28,12 @@ function NavBar({ user, onLogout }) {
               <NavLink to='/contactus' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>Contact US</NavLink>
               </li>
               {user ? (
-          <li><NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')} onClick={onLogout}>Logout</NavLink></li>
-        ) :(
+          <li><NavLink to="/dashboard" className={({ isActive }) => ('navbar-menu active')} onClick={onLogout}>Dashboard</NavLink></li>
+        )
+        (
+          <li><NavLink to="#" className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')} onClick={onLogout}>Logout</NavLink></li>
+        )
+        :(
               <li> 
               <NavLink to='/login' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>Login</NavLink>
               </li>)}
