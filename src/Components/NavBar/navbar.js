@@ -6,7 +6,7 @@ import { useAuth } from '../../Components/AuthContext/authContext'; // Adjust th
 
 
 function NavBar() {
-  const { user, logout } = useAuth();
+  const { user, onLogout } = useAuth();
   return (
     <div className="navbar">
         <div className="logo">
