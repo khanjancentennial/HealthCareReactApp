@@ -1,7 +1,7 @@
 import React from 'react'
 import './navbar.css'
 import { NavLink } from 'react-router-dom';
-import { useAuth } from './Components/AuthContext/authContext'; // Adjust the import path as necessary
+import { useAuth } from '../../Components/AuthContext/authContext'; // Adjust the import path as necessary
 
 
 
