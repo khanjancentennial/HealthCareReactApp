@@ -144,6 +144,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [action, setAction] = useState('Login');
+  const navigate = useNavigate(); // Call useNavigate here
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -163,7 +164,7 @@ function Login() {
       const userData = new User(response.data.user); // assuming the API response contains user data
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
-      avigate('/'); // Redirect to home page
+      navigate('/'); // Redirect to home page
     } catch (err) {
       setError(err.toString());
     } finally {
