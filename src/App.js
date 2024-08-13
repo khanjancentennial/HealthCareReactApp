@@ -5,11 +5,18 @@ import History from './Components/History/history';
 import About from './Components/About/about';
 import ContactUs from './Components/Contact US/contactus';
 import Login from './Components/Login/login';
+
+import useState from 'react';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 
 function App() {
+  const [user, setUser] = useState(null); // Manage user state globally
+
+  const handleLogout = () => {
+    setUser(null); // Clear user state on logout
+  };
   let component
   switch (window.location.pathname){
     case '/':
@@ -25,13 +32,13 @@ function App() {
       component = <ContactUs />
       break     
     case '/login':
-      component = <Login />
+      component = <Login setUser={setUser} />;
       break 
   }
 
   return (
       <div>
-      <NavBar />
+      <NavBar user={user} onLogout={handleLogout}/>
       {component}
 
       {/* <Router>

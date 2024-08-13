@@ -1,7 +1,7 @@
 import React from 'react'
 import './navbar.css'
 
-function NavBar() {
+function NavBar({ user, onLogout }) {
   return (
     <div className="navbar">
         <div className="logo">
@@ -23,9 +23,12 @@ function NavBar() {
               <li> 
               <a href='/contactus' className= {window.location.pathname === "/contactus" ?'navbar-menu active' :'navbar-menu'}>Contact US</a>
               </li>
+              user ? (
+          <li><a href="#" onClick={onLogout}>Logout</a></li>
+        ) :(
               <li> 
               <a href='/login' className= {window.location.pathname === "/login" ?'navbar-menu active' :'navbar-menu'}>Login</a>
-              </li>
+              </li>)
               
               {/* <Link to="/" className= {window.location.pathname === "/" ?'navbar-menu active' :'navbar-menu'}> Home </Link></li>
             <li> <Link to="/about"className={location.pathname === "/about" ?'navbar-menu active' :'navbar-menu'}> About </Link></li>
