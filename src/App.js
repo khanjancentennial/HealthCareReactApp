@@ -70,19 +70,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/history" element={<History />} />
         <Route path="/contactus" element={<ContactUs />} />
-        {user === null ? (
-          <Route path="/login" element={<Login setUser={setUser} />} />
-        ):
-        (
-          <Route path="/dashbopard" element={<Dashboard  />} />
-        )
-        (
-          <Route path="/#"  />
-        )
-        }
-
-
-        
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
     </Router>
