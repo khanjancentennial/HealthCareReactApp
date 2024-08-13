@@ -135,6 +135,7 @@ import user_image from '../../Assets/user.png';
 
 import axios from 'axios';
 import User from '../../Model/User';
+import NavBar from '../NavBar/navbar';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -162,6 +163,7 @@ function Login() {
       const userData = new User(response.data.user); // assuming the API response contains user data
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
+      NavBar(userData)
     } catch (err) {
       setError(err.toString());
     } finally {
