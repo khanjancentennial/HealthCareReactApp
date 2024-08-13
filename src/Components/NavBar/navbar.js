@@ -42,7 +42,7 @@ function NavBar() {
            </li>
            <li>
              <NavLink
-               to='/#'
+               to='/logout'
                className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}
                onClick={onLogout}
              >
