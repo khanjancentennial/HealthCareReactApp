@@ -1,9 +1,12 @@
 import React from 'react'
 import './navbar.css'
 import { NavLink } from 'react-router-dom';
+import { useAuth } from './AuthContext'; // Adjust the import path as necessary
 
 
-function NavBar({ user, onLogout }) {
+
+function NavBar() {
+  const { user, logout } = useAuth();
   return (
     <div className="navbar">
         <div className="logo">
@@ -39,7 +42,7 @@ function NavBar({ user, onLogout }) {
            </li>
            <li>
              <NavLink
-               to='/'
+               to='/#'
                className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}
                onClick={onLogout}
              >

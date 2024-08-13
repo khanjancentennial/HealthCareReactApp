@@ -129,6 +129,7 @@
 import React, { useState, useEffect } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 import email_image from '../../Assets/email.png';
 import password_image from '../../Assets/padlock.png';
@@ -145,6 +146,8 @@ function Login() {
   const [user, setUser] = useState(null);
   const [action, setAction] = useState('Login');
   const navigate = useNavigate(); // Call useNavigate here
+  const { login } = useAuth();
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -163,7 +166,7 @@ function Login() {
       );
       const userData = new User(response.data.user); // assuming the API response contains user data
       localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
+      login(userData);
       navigate('/'); // Redirect to home page
     } catch (err) {
       setError(err.toString());
@@ -175,10 +178,9 @@ function Login() {
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
       navigate('/'); // Redirect to home page if already logged in
     }
-  }, [setUser, navigate]);
+  }, [navigate]);
 
   if (user) {
     return <div>Welcome {user.firstName}</div>;

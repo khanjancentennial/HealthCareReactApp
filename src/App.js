@@ -5,9 +5,12 @@ import History from './Components/History/history';
 import About from './Components/About/about';
 import ContactUs from './Components/Contact US/contactus';
 import Login from './Components/Login/login';
+import Patients from './Components/Patients/patients';
 import Dashboard from './Components/Dashboard/dashboard'; // Import your protected component
 
 import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
+
+import { AuthProvider } from './AuthContext';
 
 
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -63,6 +66,7 @@ function App() {
   //   </div>
   // );
   return (
+    <AuthProvider>
     <Router>
       <NavBar user={user} onLogout={handleLogout} />
       <Routes>
@@ -71,9 +75,11 @@ function App() {
         <Route path="/history" element={<History />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/patients" element={<Patients />} />
         <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
     </Router>
+    </AuthProvider>
   );
 
 }
