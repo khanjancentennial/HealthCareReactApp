@@ -10,7 +10,7 @@ import Dashboard from './Components/Dashboard/dashboard'; // Import your protect
 
 import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
 
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from './Components/AuthContext/authContext';
 
 
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';

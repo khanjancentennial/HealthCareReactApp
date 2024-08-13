@@ -129,7 +129,7 @@
 import React, { useState, useEffect } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import { useAuth } from './Components/AuthContext/authContext';
 
 import email_image from '../../Assets/email.png';
 import password_image from '../../Assets/padlock.png';
