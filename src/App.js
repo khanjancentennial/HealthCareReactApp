@@ -34,6 +34,8 @@ function App() {
     case '/login':
       component = <Login setUser={setUser} />;
       break 
+    default:
+      component = <Home />;
   }
 
   return (
