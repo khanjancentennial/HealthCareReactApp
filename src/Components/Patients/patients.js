@@ -9,6 +9,26 @@ function Patients() {
     { firstName: 'Jim', lastName: 'Beam', email: 'jim.beam@example.com', phone: '123-456-7892', gender: 'Male' },
     { firstName: 'Jack', lastName: 'Daniels', email: 'jack.daniels@example.com', phone: '123-456-7893', gender: 'Male' },
     { firstName: 'Jill', lastName: 'Valentine', email: 'jill.valentine@example.com', phone: '123-456-7894', gender: 'Female' },
+    { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phone: '123-456-7890', gender: 'Male' },
+    { firstName: 'Jane', lastName: 'Doe', email: 'jane.doe@example.com', phone: '123-456-7891', gender: 'Female' },
+    { firstName: 'Jim', lastName: 'Beam', email: 'jim.beam@example.com', phone: '123-456-7892', gender: 'Male' },
+    { firstName: 'Jack', lastName: 'Daniels', email: 'jack.daniels@example.com', phone: '123-456-7893', gender: 'Male' },
+    { firstName: 'Jill', lastName: 'Valentine', email: 'jill.valentine@example.com', phone: '123-456-7894', gender: 'Female' },
+    { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phone: '123-456-7890', gender: 'Male' },
+    { firstName: 'Jane', lastName: 'Doe', email: 'jane.doe@example.com', phone: '123-456-7891', gender: 'Female' },
+    { firstName: 'Jim', lastName: 'Beam', email: 'jim.beam@example.com', phone: '123-456-7892', gender: 'Male' },
+    { firstName: 'Jack', lastName: 'Daniels', email: 'jack.daniels@example.com', phone: '123-456-7893', gender: 'Male' },
+    { firstName: 'Jill', lastName: 'Valentine', email: 'jill.valentine@example.com', phone: '123-456-7894', gender: 'Female' },
+    { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phone: '123-456-7890', gender: 'Male' },
+    { firstName: 'Jane', lastName: 'Doe', email: 'jane.doe@example.com', phone: '123-456-7891', gender: 'Female' },
+    { firstName: 'Jim', lastName: 'Beam', email: 'jim.beam@example.com', phone: '123-456-7892', gender: 'Male' },
+    { firstName: 'Jack', lastName: 'Daniels', email: 'jack.daniels@example.com', phone: '123-456-7893', gender: 'Male' },
+    { firstName: 'Jill', lastName: 'Valentine', email: 'jill.valentine@example.com', phone: '123-456-7894', gender: 'Female' },
+    { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phone: '123-456-7890', gender: 'Male' },
+    { firstName: 'Jane', lastName: 'Doe', email: 'jane.doe@example.com', phone: '123-456-7891', gender: 'Female' },
+    { firstName: 'Jim', lastName: 'Beam', email: 'jim.beam@example.com', phone: '123-456-7892', gender: 'Male' },
+    { firstName: 'Jack', lastName: 'Daniels', email: 'jack.daniels@example.com', phone: '123-456-7893', gender: 'Male' },
+    { firstName: 'Jill', lastName: 'Valentine', email: 'jill.valentine@example.com', phone: '123-456-7894', gender: 'Female' },
   ];
 
   const handleEdit = (index) => {
@@ -20,7 +40,7 @@ function Patients() {
   };
 
   return <div>
-  return (
+ 
     <div className="table-container">
       <table>
         <thead>
@@ -53,9 +73,6 @@ function Patients() {
         </tbody>
       </table>
     </div>
-  );
-
-
   </div>;
 }
 
