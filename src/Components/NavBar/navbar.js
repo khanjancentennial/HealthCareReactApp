@@ -23,12 +23,15 @@ function NavBar({ user, onLogout }) {
               <li> 
               <a href='/contactus' className= {window.location.pathname === "/contactus" ?'navbar-menu active' :'navbar-menu'}>Contact US</a>
               </li>
-              user ? (
-          <li><a href="#" onClick={onLogout}>Logout</a></li>
-        ) :(
-              <li> 
-              <a href='/login' className= {window.location.pathname === "/login" ?'navbar-menu active' :'navbar-menu'}>Login</a>
-              </li>)
+              {user ? (
+          <li>
+            <a href="#" onClick={onLogout}>Logout</a>
+          </li>
+        ) : (
+          <li>
+            <Link to="/login" className={window.location.pathname === "/login" ? 'navbar-menu active' : 'navbar-menu'}>Login</Link>
+          </li>
+        )}
               
               {/* <Link to="/" className= {window.location.pathname === "/" ?'navbar-menu active' :'navbar-menu'}> Home </Link></li>
             <li> <Link to="/about"className={location.pathname === "/about" ?'navbar-menu active' :'navbar-menu'}> About </Link></li>
