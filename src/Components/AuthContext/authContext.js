@@ -11,9 +11,12 @@ export function AuthProvider({ children }) {
     localStorage.setItem('user', JSON.stringify(userData));
   };
 
-  const logout = () => {
-    setUser(null);
+  const onLogout = () => {
+    // Clear user data
     localStorage.removeItem('user');
+    setUser(null);
+    // Redirect to home page
+    navigate('/');
   };
 
   return (
