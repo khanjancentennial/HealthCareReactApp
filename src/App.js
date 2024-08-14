@@ -66,8 +66,9 @@ function App() {
   //   </div>
   // );
   return (
-    <AuthProvider>
+    
     <Router>
+      <AuthProvider>
       <NavBar user={user} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -78,8 +79,9 @@ function App() {
         <Route path="/patients" element={<Patients />} />
         <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
+      </AuthProvider>
     </Router>
-    </AuthProvider>
+   
   );
 
 }
