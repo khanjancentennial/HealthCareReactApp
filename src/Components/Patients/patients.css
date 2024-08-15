@@ -53,4 +53,41 @@
   .even-row {
     background-color: #f8d7da;
   }
+
+  .critical-text {
+    color: red;
+    font-weight: bold
+  }
+  
+  .normal-text {
+    color: green;
+    font-weight: bold
+  }
+
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    margin-right: 50px;
+  }
+  
+  .add-patient-button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-patient-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .table-container {
+    margin-top: 10px;
+  }
+  
   

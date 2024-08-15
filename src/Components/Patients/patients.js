@@ -38,6 +38,10 @@ function Patients() {
 
   return (
     <div>
+      <div className="button-container">
+        <button className="add-patient-button">Add New Patient</button>
+      </div>
+      <center>All Patients</center>
       <div className="table-container">
         <table>
           <thead>
@@ -75,7 +79,7 @@ function Patients() {
                   <td>{item.weight}</td>
                   <td>{item.height}</td>
                   <td>{item.address}</td>
-                  <td>{item.status}</td>
+                  <td className={item.status === "critical" ? 'critical-text' : 'normal-text'}>{item.status}</td>
                   <td>
                     <button onClick={() => handleEdit(index)}>
                       <FontAwesomeIcon icon={faEdit} />
