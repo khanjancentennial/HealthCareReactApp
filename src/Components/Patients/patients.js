@@ -15,8 +15,8 @@ function Patients() {
       try {
         const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
 
-        // Assuming the API response contains an array of patients
-        const patientData = response.data.map(patient => new Patient(patient));
+        // Accessing the 'data' array from the API response
+        const patientData = response.data.data.map(patient => new Patient(patient));
         setData(patientData);
       } catch (err) {
         setError(err.toString());
