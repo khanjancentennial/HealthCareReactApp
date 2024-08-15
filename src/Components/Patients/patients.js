@@ -3,7 +3,7 @@ import './patients.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import Patient from '../../Model/patients';
+import Patient from '../../Model/Patients_Model';
 
 function Patients() {
   const [data, setData] = useState([]);
