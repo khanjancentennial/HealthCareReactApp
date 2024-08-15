@@ -1,25 +1,28 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import './patients.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 function Patients() {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // Add an error state
 
   useEffect(() => {
-    fetch('https://group3-mapd713.onrender.com/patient/list')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Fetched data:', data); // Log the fetched data
-        setData(data);
-        setLoading(false); // Set loading to false once data is fetched
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setLoading(false); // Set loading to false even if there's an error
-      });
-  }, []);  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
+        setData(response.data); // assuming the API response contains the list of patients
+      } catch (err) {
+        setError(err.toString());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to run the effect only once on mount
 
   const handleEdit = (index) => {
     console.log('Edit item at index:', index);
@@ -52,6 +55,10 @@ function Patients() {
             {loading ? (
               <tr>
                 <td colSpan="11">Loading data...</td>
+              </tr>
+            ) : error ? (
+              <tr>
+                <td colSpan="11">Error loading data: {error}</td>
               </tr>
             ) : data.length > 0 ? (
               data.map((item, index) => (
