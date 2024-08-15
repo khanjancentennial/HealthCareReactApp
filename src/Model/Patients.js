@@ -1,4 +1,4 @@
-class Patients {
+class Patient {
     constructor({ _id, firstName, lastName, email, phoneNumber, gender, weight, height, address, status }) {
       this.id = _id;
       this.firstName = firstName;
@@ -9,8 +9,9 @@ class Patients {
       this.weight = weight;
       this.height = height;
       this.address = address;
-      this.status = status
+      this.status = status;
     }
   }
   
-  export default User;
+  export default Patient;
+  

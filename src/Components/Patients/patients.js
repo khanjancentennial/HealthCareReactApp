@@ -3,17 +3,21 @@ import './patients.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import Patient from '../../Model/patients';
 
 function Patients() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Add an error state
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
-        setData(response.data); // assuming the API response contains the list of patients
+
+        // Assuming the API response contains an array of patients
+        const patientData = response.data.map(patient => new Patient(patient));
+        setData(patientData);
       } catch (err) {
         setError(err.toString());
       } finally {
@@ -22,7 +26,7 @@ function Patients() {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []);
 
   const handleEdit = (index) => {
     console.log('Edit item at index:', index);
