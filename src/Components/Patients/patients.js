@@ -22,6 +22,16 @@ function Patients() {
         const patientData = response.data.data.map(patient => new Patient(patient));
         console.log(patientData);
         setData(patientData);
+        const handleDelete = (index) => {
+          const patientData = data[index];
+          if (patientData) {
+            console.log(patientData._id); // Should correctly log the ID
+            setSelectedPatientId(patientData._id); // Assuming _id is the patient ID
+            setIsDeleteDialogOpen(true);
+          } else {
+            console.error('Patient data is not available for index:', index);
+          }
+        };
       } catch (err) {
         setError(err.toString());
       } finally {
@@ -36,16 +46,7 @@ function Patients() {
     console.log('Edit item at index:', index);
   };
 
-  const handleDelete = (index) => {
-    const patient = data[index];
-    if (patient) {
-      console.log(patient._id); // Should correctly log the ID
-      setSelectedPatientId(patient._id); // Assuming _id is the patient ID
-      setIsDeleteDialogOpen(true);
-    } else {
-      console.error('Patient data is not available for index:', index);
-    }
-  };
+  
   
 
   const handleDialogOpen = () => {
