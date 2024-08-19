@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Patients/patientsDialog.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,11 +13,13 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     gender: '',
     email: '',
     phoneNumber: '',
-    address: '',   // Added address
-    status: 'normal' // Added status with default value
+    address: '',
+    status: 'normal',
   });
 
   const [formErrors, setFormErrors] = useState({});
+  const [toastMessage, setToastMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +39,7 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     if (!formData.gender) errors.gender = 'Gender is required';
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Valid email is required';
     if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) errors.phoneNumber = 'Phone number must be 10 digits long';
-    if (!formData.address) errors.address = 'Address is required'; // Added address validation
+    if (!formData.address) errors.address = 'Address is required';
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -47,26 +49,34 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     e.preventDefault();
     if (validateForm()) {
       try {
-        await axios.post('https://group3-mapd713.onrender.com/patient/add', {
+        const response = await axios.post('https://group3-mapd713.onrender.com/patient/add', {
           ...formData,
           gender: Number(formData.gender),
-          phoneNumber: formData.phoneNumber.replace(/-/g, ''), // Remove dashes from phone number if needed
-        },
-        {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-        }
-    
-    );
+          phoneNumber: formData.phoneNumber.replace(/-/g, ''),
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        setToastMessage(response.data.message); // Assuming the API response contains a `message` field
         onSubmit(formData);
         onClose();
-        navigate('/');
+        navigate('/patients');
       } catch (error) {
         console.error("There was an error adding the patient!", error);
       }
     }
   };
+
+  useEffect(() => {
+    if (toastMessage) {
+      const timer = setTimeout(() => {
+        setToastMessage('');
+      }, 5000); // 5 seconds
+
+      return () => clearTimeout(timer); // Clean up timeout on component unmount
+    }
+  }, [toastMessage]);
 
   if (!isOpen) return null;
 
@@ -74,6 +84,11 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     <div className="dialog-overlay">
       <div className="dialog">
         <h2>Add New Patient</h2>
+        {toastMessage && (
+          <div className="toast-message">
+            {toastMessage}
+          </div>
+        )}
         <form onSubmit={handleFormSubmit}>
           <div className="form-group">
             <label>First Name</label>
