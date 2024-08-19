@@ -62,6 +62,7 @@ function Patients() {
 
   const handleFormSubmit = (formData) => {
     console.log('Form data submitted:', formData);
+    fetchData();
     // Add the logic to submit the form data to the server here
   };
 
@@ -72,6 +73,7 @@ function Patients() {
   const handleDeleteFormSubmit = () => {
     // Refresh patient list or handle UI update here
     console.log('Patient deleted');
+    fetchData();
     // Optionally refetch patient list after deletion
   };
 
