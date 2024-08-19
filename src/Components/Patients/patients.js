@@ -14,13 +14,12 @@ function Patients() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedPatientId, setSelectedPatientId] = useState(null);
-  const patientData = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
-        patientData = response.data.data.map(patient => new Patient(patient));
+        const patientData = response.data.data.map(patient => new Patient(patient));
         setData(patientData);
       } catch (err) {
         setError(err.toString());
@@ -37,7 +36,8 @@ function Patients() {
   };
 
   const handleDelete = (index) => {
-    setSelectedPatientId(patientData[index]._id); // Assuming _id is the patient ID
+    console.log(data[index]._id);
+    setSelectedPatientId(data[index]._id); // Assuming _id is the patient ID
     setIsDeleteDialogOpen(true);
   };
 
