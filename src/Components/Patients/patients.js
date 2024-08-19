@@ -39,7 +39,7 @@ function Patients() {
   };
 
   const handleDelete = (index) => {
-    const patient = patientData[index];
+    const patient = allPatientData[index];
     if (patient) {
       console.log(patient._id); // Should correctly log the ID
       setSelectedPatientId(patient._id); // Assuming _id is the patient ID
