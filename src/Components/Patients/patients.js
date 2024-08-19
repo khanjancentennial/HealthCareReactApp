@@ -5,19 +5,20 @@ import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Patient from '../../Model/Patients_Model';
 import PatientDialog from '../Patients/patientsDialog';
+import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 function Patients() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [selectedPatientId, setSelectedPatientId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
-
-        // Accessing the 'data' array from the API response
         const patientData = response.data.data.map(patient => new Patient(patient));
         setData(patientData);
       } catch (err) {
@@ -35,7 +36,8 @@ function Patients() {
   };
 
   const handleDelete = (index) => {
-    console.log('Delete item at index:', index);
+    setSelectedPatientId(data[index]._id); // Assuming _id is the patient ID
+    setIsDeleteDialogOpen(true);
   };
 
   const handleDialogOpen = () => {
@@ -49,6 +51,16 @@ function Patients() {
   const handleFormSubmit = (formData) => {
     console.log('Form data submitted:', formData);
     // Add the logic to submit the form data to the server here
+  };
+
+  const handleDeleteDialogClose = () => {
+    setIsDeleteDialogOpen(false);
+  };
+
+  const handleDeleteFormSubmit = () => {
+    // Refresh patient list or handle UI update here
+    console.log('Patient deleted');
+    // Optionally refetch patient list after deletion
   };
 
   return (
@@ -120,6 +132,13 @@ function Patients() {
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleFormSubmit}
+      />
+
+      <PatientDeleteDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={handleDeleteDialogClose}
+        onSubmit={handleDeleteFormSubmit}
+        patientId={selectedPatientId}
       />
     </div>
   );
