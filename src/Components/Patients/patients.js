@@ -36,7 +36,7 @@ function Patients() {
   };
 
   const handleDelete = (index) => {
-    setSelectedPatientId(data[index]._id); // Assuming _id is the patient ID
+    setSelectedPatientId(patientData[index]._id); // Assuming _id is the patient ID
     setIsDeleteDialogOpen(true);
   };
 
