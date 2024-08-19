@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../Patients/patientsDialog.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function PatientDialog({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
@@ -60,6 +61,7 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     );
         onSubmit(formData);
         onClose();
+        navigate('/');
       } catch (error) {
         console.error("There was an error adding the patient!", error);
       }
