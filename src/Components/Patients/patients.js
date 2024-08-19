@@ -43,8 +43,8 @@ function Patients() {
     const patient = allPatientData[index];
     console.log(patient);
     if (patient) {
-      console.log(patient._id); // Should correctly log the ID
-      setSelectedPatientId(patient._id); // Assuming _id is the patient ID
+      console.log(patient.id); // Should correctly log the ID
+      setSelectedPatientId(patient.id); // Assuming _id is the patient ID
       setIsDeleteDialogOpen(true);
     } else {
       console.error('Patient data is not available for index:', index);
