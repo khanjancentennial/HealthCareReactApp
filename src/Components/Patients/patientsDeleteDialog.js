@@ -5,6 +5,7 @@ import axios from 'axios';
 function PatientDeleteDialog({ isOpen, onClose, onSubmit, patientId }) {
   const [message, setMessage] = useState('');
 
+  
   useEffect(() => {
     // Clear message when dialog is closed
     if (!isOpen) setMessage('');
@@ -12,6 +13,7 @@ function PatientDeleteDialog({ isOpen, onClose, onSubmit, patientId }) {
 
   const handleDelete = async () => {
     try {
+      console.log(patientId)
       const response = await axios.delete(`https://group3-mapd713.onrender.com/patient/delete/${patientId}`);
       setMessage(response.data.message);
       onSubmit(); // Callback to refresh the patient list or handle UI update
