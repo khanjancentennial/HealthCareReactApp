@@ -21,9 +21,9 @@ function Patients() {
       try {
         const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
         const patientData = response.data.data.map(patient => new Patient(patient));
+        setPatientData(patientData);
         console.log(patientData);
         setData(patientData);
-        setPatientData(patientData);
       } catch (err) {
         setError(err.toString());
       } finally {
@@ -39,7 +39,9 @@ function Patients() {
   };
 
   const handleDelete = (index) => {
+    console.log(index);
     const patient = allPatientData[index];
+    console.log(patient);
     if (patient) {
       console.log(patient._id); // Should correctly log the ID
       setSelectedPatientId(patient._id); // Assuming _id is the patient ID
