@@ -20,6 +20,7 @@ function Patients() {
       try {
         const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
         const patientData = response.data.data.map(patient => new Patient(patient));
+        console.log(patientData);
         setData(patientData);
       } catch (err) {
         setError(err.toString());
@@ -36,10 +37,16 @@ function Patients() {
   };
 
   const handleDelete = (index) => {
-    console.log(data[index]._id);
-    setSelectedPatientId(data[index]._id); // Assuming _id is the patient ID
-    setIsDeleteDialogOpen(true);
+    const patient = data[index];
+    if (patient) {
+      console.log(patient._id); // Should correctly log the ID
+      setSelectedPatientId(patient._id); // Assuming _id is the patient ID
+      setIsDeleteDialogOpen(true);
+    } else {
+      console.error('Patient data is not available for index:', index);
+    }
   };
+  
 
   const handleDialogOpen = () => {
     setIsDialogOpen(true);
