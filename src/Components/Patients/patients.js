@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './patients.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Patient from '../../Model/Patients_Model';
 import PatientDialog from '../Patients/patientsDialog';
@@ -54,7 +54,7 @@ function Patients() {
   return (
     <div>
       <div className="button-container">
-        <button className="add-patient-button" onClick={handleDialogOpen}>Add New Patient</button>
+        <button className="add-patient-button" onClick={handleDialogOpen}><FontAwesomeIcon icon={faAdd}/> Add New Patient</button>
       </div>
       <center>All Patients</center>
       <div className="table-container">

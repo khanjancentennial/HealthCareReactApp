@@ -9,60 +9,65 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  
-  .dialog {
+}
+
+.dialog {
     background: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 15px;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-  }
-  
-  .form-group input,
-  .form-group select {
+}
+
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-  }
-  
-  .error-text {
+    height: 60px;
+    background: rgb(238, 234, 234);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+
+.error-text {
     color: red;
     font-size: 12px;
     margin-top: 5px;
-  }
-  
-  .form-actions {
+}
+
+.form-actions {
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .submit-button,
-  .cancel-button {
+}
+
+.submit-button,
+.cancel-button {
     padding: 8px 16px;
     margin-left: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .submit-button {
+}
+
+.submit-button {
     background-color: #4CAF50;
     color: white;
-  }
-  
-  .cancel-button {
+}
+
+.cancel-button {
     background-color: #f44336;
     color: white;
-  }
-  
+}
