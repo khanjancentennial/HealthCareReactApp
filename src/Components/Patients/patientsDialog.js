@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './PatientDialog.css';
+import '../Patients/patientsDialog.css';
 
 function PatientDialog({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
