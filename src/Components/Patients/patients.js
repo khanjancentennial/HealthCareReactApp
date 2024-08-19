@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Patient from '../../Model/Patients_Model';
+import PatientDialog from '../Patients/patientsDialog';
 
 function Patients() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,10 +38,23 @@ function Patients() {
     console.log('Delete item at index:', index);
   };
 
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
+
+  const handleFormSubmit = (formData) => {
+    console.log('Form data submitted:', formData);
+    // Add the logic to submit the form data to the server here
+  };
+
   return (
     <div>
       <div className="button-container">
-        <button className="add-patient-button">Add New Patient</button>
+        <button className="add-patient-button" onClick={handleDialogOpen}>Add New Patient</button>
       </div>
       <center>All Patients</center>
       <div className="table-container">
@@ -100,6 +115,12 @@ function Patients() {
           </tbody>
         </table>
       </div>
+
+      <PatientDialog
+        isOpen={isDialogOpen}
+        onClose={handleDialogClose}
+        onSubmit={handleFormSubmit}
+      />
     </div>
   );
 }
