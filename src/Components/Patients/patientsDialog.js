@@ -60,8 +60,9 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
         });
         setToastMessage(response.data.message); // Assuming the API response contains a `message` field
         onSubmit(formData);
-        onClose();
+        
         navigate('/patients');
+        onClose();
       } catch (error) {
         console.error("There was an error adding the patient!", error);
       }
