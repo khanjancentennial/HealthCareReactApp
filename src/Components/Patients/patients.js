@@ -16,21 +16,22 @@ function Patients() {
   const [selectedPatientId, setSelectedPatientId] = useState(null);
   const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
-        const patientData = response.data.data.map(patient => new Patient(patient));
-        setPatientData(patientData);
-        console.log(patientData);
-        setData(patientData);
-      } catch (err) {
-        setError(err.toString());
-      } finally {
-        setLoading(false);
-      }
-    };
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://group3-mapd713.onrender.com/patient/list');
+      const patientData = response.data.data.map(patient => new Patient(patient));
+      setPatientData(patientData);
+      console.log(patientData);
+      setData(patientData);
+    } catch (err) {
+      setError(err.toString());
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    
     fetchData();
   }, []);
 
