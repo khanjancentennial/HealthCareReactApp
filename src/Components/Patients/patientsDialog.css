@@ -16,6 +16,8 @@
     padding: 20px;
     border-radius: 20px;
     width: 400px;
+    max-height: 80vh; /* Limit the height */
+    overflow-y: auto; /* Enable vertical scrolling */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -51,6 +53,7 @@
 .form-actions {
     display: flex;
     justify-content: flex-end;
+    margin-top: 15px; /* Add margin to separate from the form fields */
 }
 
 .submit-button,

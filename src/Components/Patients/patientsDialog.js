@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Patients/patientsDialog.css';
+import axios from 'axios';
 
 function PatientDialog({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     gender: '',
     email: '',
     phoneNumber: '',
+    address: '',   // Added address
+    status: 'normal' // Added status with default value
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -27,22 +30,39 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     let errors = {};
     if (!formData.firstName) errors.firstName = 'First name is required';
     if (!formData.lastName) errors.lastName = 'Last name is required';
-    if (!formData.age || isNaN(formData.age)) errors.age = 'Valid age is required';
-    if (!formData.height || isNaN(formData.height)) errors.height = 'Valid height is required';
-    if (!formData.weight || isNaN(formData.weight)) errors.weight = 'Valid weight is required';
+    if (!formData.age || isNaN(formData.age) || formData.age <= 0) errors.age = 'Valid age is required';
+    if (!formData.height || isNaN(formData.height) || formData.height <= 0) errors.height = 'Valid height is required';
+    if (!formData.weight || isNaN(formData.weight) || formData.weight <= 0) errors.weight = 'Valid weight is required';
     if (!formData.gender) errors.gender = 'Gender is required';
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Valid email is required';
-    if (!formData.phoneNumber || !/^\d+$/.test(formData.phoneNumber)) errors.phoneNumber = 'Valid phone number is required';
+    if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) errors.phoneNumber = 'Phone number must be 10 digits long';
+    if (!formData.address) errors.address = 'Address is required'; // Added address validation
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit(formData);
-      onClose();
+      try {
+        await axios.post('https://group3-mapd713.onrender.com/patient/add', {
+          ...formData,
+          gender: Number(formData.gender),
+          phoneNumber: formData.phoneNumber.replace(/-/g, ''), // Remove dashes from phone number if needed
+        },
+        {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        }
+    
+    );
+        onSubmit(formData);
+        onClose();
+      } catch (error) {
+        console.error("There was an error adding the patient!", error);
+      }
     }
   };
 
@@ -76,30 +96,33 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
           <div className="form-group">
             <label>Age</label>
             <input
-              type="text"
+              type="number"
               name="age"
               value={formData.age}
               onChange={handleInputChange}
+              min="1"
             />
             {formErrors.age && <p className="error-text">{formErrors.age}</p>}
           </div>
           <div className="form-group">
             <label>Height</label>
             <input
-              type="text"
+              type="number"
               name="height"
               value={formData.height}
               onChange={handleInputChange}
+              min="1"
             />
             {formErrors.height && <p className="error-text">{formErrors.height}</p>}
           </div>
           <div className="form-group">
             <label>Weight</label>
             <input
-              type="text"
+              type="number"
               name="weight"
               value={formData.weight}
               onChange={handleInputChange}
+              min="1"
             />
             {formErrors.weight && <p className="error-text">{formErrors.weight}</p>}
           </div>
@@ -133,8 +156,20 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleInputChange}
+              maxLength="10"
+              minLength="10"
             />
             {formErrors.phoneNumber && <p className="error-text">{formErrors.phoneNumber}</p>}
+          </div>
+          <div className="form-group">
+            <label>Address</label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+            />
+            {formErrors.address && <p className="error-text">{formErrors.address}</p>}
           </div>
           <div className="form-actions">
             <button type="submit" className="submit-button">Add Patient</button>
