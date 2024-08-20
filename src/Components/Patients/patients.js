@@ -17,7 +17,7 @@ function Patients() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
   const [selectedPatientId, setSelectedPatientId] = useState(null);
-  const [selectedPatientfirstName, setSelectedPatientfirstName] = useState(null);
+  const [selectedPatientfirstName, setSelectedPatientFirstName] = useState(null);
   const [selectedPatientLastName, setSelectedPatientLastName] = useState(null);
   const [selectedPatientEmail, setSelectedPatientEmail] = useState(null);
   const [selectedPatientPhoneNumber, setSelectedPatientPhoneNumber] = useState(null);
