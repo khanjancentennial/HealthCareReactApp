@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import '../Patients/patientUpdateDialog.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, firstName, lastName, height, weight, gender, email, phoneNumber, address }) {
   const [formData, setFormData] = useState({
-    firstName: firstName,
-    lastName: lastName,
-    height: height,
-    weight: weight,
-    gender: gender,
-    email: email,
-    phoneNumber: phoneNumber,
-    address: address,
+    firstName: '',
+    lastName: '',
+    height: '',
+    weight: '',
+    gender: '', // Initialize as empty string
+    email: '',
+    phoneNumber: '',
+    address: '',
   });
 
   const [formErrors, setFormErrors] = useState({});
   const [toastMessage, setToastMessage] = useState('');
+
+  // Populate the form data when the dialog opens
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({
+        firstName: firstName || '',
+        lastName: lastName || '',
+        height: height || '',
+        weight: weight || '',
+        gender: gender !== undefined ? gender.toString() : '', // Convert gender to string for comparison
+        email: email || '',
+        phoneNumber: phoneNumber || '',
+        address: address || '',
+      });
+    }
+  }, [isOpen, firstName, lastName, height, weight, gender, email, phoneNumber, address]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +47,7 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, firstName, 
     if (!formData.lastName) errors.lastName = 'Last name is required';
     if (!formData.height || isNaN(formData.height) || formData.height <= 0) errors.height = 'Valid height is required';
     if (!formData.weight || isNaN(formData.weight) || formData.weight <= 0) errors.weight = 'Valid weight is required';
-    if (!formData.gender) errors.gender = 'Gender is required';
+    if (formData.gender === '') errors.gender = 'Gender is required'; // Ensure gender is selected
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Valid email is required';
     if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) errors.phoneNumber = 'Phone number must be 10 digits long';
     if (!formData.address) errors.address = 'Address is required';
@@ -47,7 +62,7 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, firstName, 
       try {
         const response = await axios.put(`https://group3-mapd713.onrender.com/patient/patients/${patientId}`, {
           ...formData,
-          gender: Number(formData.gender),
+          gender: Number(formData.gender), // Convert gender back to number before sending to the API
           phoneNumber: formData.phoneNumber.replace(/-/g, ''),
         }, {
           headers: {
@@ -105,7 +120,6 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, firstName, 
             />
             {formErrors.lastName && <p className="error-text">{formErrors.lastName}</p>}
           </div>
-          
           <div className="form-group">
             <label>Height</label>
             <input
