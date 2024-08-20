@@ -7,13 +7,24 @@ import Patient from '../../Model/Patients_Model';
 import PatientDialog from '../Patients/patientsDialog';
 import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
+import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
+
 function Patients() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
   const [selectedPatientId, setSelectedPatientId] = useState(null);
+  const [selectedPatientfirstName, setSelectedPatientfirstName] = useState(null);
+  const [selectedPatientLastName, setSelectedPatientLastName] = useState(null);
+  const [selectedPatientEmail, setSelectedPatientEmail] = useState(null);
+  const [selectedPatientPhoneNumber, setSelectedPatientPhoneNumber] = useState(null);
+  const [selectedPatientHeight, setSelectedPatientHeight] = useState(null);
+  const [selectedPatientWeight, setSelectedPatientWeight] = useState(null);
+  const [selectedPatientAddress, setSelectedPatientAddress] = useState(null);
+  const [selectedPatientGender, setSelectedPatientGender] = useState(null);
   const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
 
 
@@ -36,7 +47,16 @@ function Patients() {
   }, []);
 
   const handleEdit = (index) => {
-    console.log('Edit item at index:', index);
+    console.log(index);
+    const patient = allPatientData[index];
+    console.log(patient);
+    if (patient) {
+      console.log(patient.id); // Should correctly log the ID
+      setSelectedPatientId(patient.id); // Assuming _id is the patient ID
+      setIsUpdatedDialogOpen(true);
+    } else {
+      console.error('Patient data is not available for index:', index);
+    }
   };
 
   const handleDelete = (index) => {
@@ -45,7 +65,15 @@ function Patients() {
     console.log(patient);
     if (patient) {
       console.log(patient.id); // Should correctly log the ID
-      setSelectedPatientId(patient.id); // Assuming _id is the patient ID
+      setSelectedPatientId(patient.id);// Assuming _id is the patient ID
+      setSelectedPatientFirstName(patient.firstName);
+      setSelectedPatientLastName(patient.lastName);
+      setSelectedPatientGender(patient.gender);
+      setSelectedPatientEmail(patient.email);
+      setSelectedPatientPhoneNumber(patient.phoneNumber);
+      setSelectedPatientHeight(patient.height);
+      setSelectedPatientWeight(patient.weight);
+      setSelectedPatientAddress(patient.address); 
       setIsDeleteDialogOpen(true);
     } else {
       console.error('Patient data is not available for index:', index);
@@ -74,6 +102,17 @@ function Patients() {
   const handleDeleteFormSubmit = () => {
     // Refresh patient list or handle UI update here
     console.log('Patient deleted');
+    fetchData();
+    // Optionally refetch patient list after deletion
+  };
+
+  const handleUpdatedDialogClose = () => {
+    setIsDeleteDialogOpen(false);
+  };
+
+  const handleUpdatedFormSubmit = () => {
+    // Refresh patient list or handle UI update here
+    console.log('Patient Updated');
     fetchData();
     // Optionally refetch patient list after deletion
   };
@@ -154,6 +193,21 @@ function Patients() {
         onClose={handleDeleteDialogClose}
         onSubmit={handleDeleteFormSubmit}
         patientId={selectedPatientId}
+      />
+
+      <PatientUpdatedDialog
+        isOpen={isUpdatedDialogOpen}
+        onClose={handleUpdatedDialogClose}
+        onSubmit={handleUpdatedFormSubmit}
+        patientId={selectedPatientId}
+        firstName={selectedPatientfirstName}
+        lastName={selectedPatientLastName}
+        gender={selectedPatientGender}
+        address={selectedPatientAddress}
+        weight={selectedPatientWeight}
+        height={selectedPatientHeight}
+        email={selectedPatientEmail}
+        phoneNumber={selectedPatientPhoneNumber}
       />
     </div>
   );

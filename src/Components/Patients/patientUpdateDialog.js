@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import '../Patients/patientsDialog.css';
+import '../Patients/patientsUpdateDialog.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function PatientDialog({ isOpen, onClose, onSubmit }) {
+function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, firstName, lastName, height, weight, gender, email, phoneNumber, address }) {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    height: '',
-    weight: '',
-    gender: '',
-    email: '',
-    phoneNumber: '',
-    address: '',
-    status: 'normal',
+    firstName: firstName,
+    lastName: lastName,
+    height: height,
+    weight: weight,
+    gender: gender,
+    email: email,
+    phoneNumber: phoneNumber,
+    address: address,
   });
 
   const [formErrors, setFormErrors] = useState({});
   const [toastMessage, setToastMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +30,6 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     let errors = {};
     if (!formData.firstName) errors.firstName = 'First name is required';
     if (!formData.lastName) errors.lastName = 'Last name is required';
-    // if (!formData.age || isNaN(formData.age) || formData.age <= 0) errors.age = 'Valid age is required';
     if (!formData.height || isNaN(formData.height) || formData.height <= 0) errors.height = 'Valid height is required';
     if (!formData.weight || isNaN(formData.weight) || formData.weight <= 0) errors.weight = 'Valid weight is required';
     if (!formData.gender) errors.gender = 'Gender is required';
@@ -48,7 +45,7 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('https://group3-mapd713.onrender.com/patient/add', {
+        const response = await axios.put(`https://group3-mapd713.onrender.com/patient/patients/${patientId}`, {
           ...formData,
           gender: Number(formData.gender),
           phoneNumber: formData.phoneNumber.replace(/-/g, ''),
@@ -59,11 +56,9 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
         });
         setToastMessage(response.data.message); // Assuming the API response contains a `message` field
         onSubmit(formData);
-        
-        navigate('/patients');
         onClose();
       } catch (error) {
-        console.error("There was an error adding the patient!", error);
+        console.error("There was an error while updating the patient details!", error);
       }
     }
   };
@@ -83,7 +78,7 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
   return (
     <div className="dialog-overlay">
       <div className="dialog">
-        <h2>Add New Patient</h2>
+        <h2>Update Patient Details</h2>
         {toastMessage && (
           <div className="toast-message">
             {toastMessage}
@@ -110,17 +105,7 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
             />
             {formErrors.lastName && <p className="error-text">{formErrors.lastName}</p>}
           </div>
-          {/* <div className="form-group">
-            <label>Age</label>
-            <input
-              type="number"
-              name="age"
-              value={formData.age}
-              onChange={handleInputChange}
-              min="1"
-            />
-            {formErrors.age && <p className="error-text">{formErrors.age}</p>}
-          </div> */}
+          
           <div className="form-group">
             <label>Height</label>
             <input
@@ -198,4 +183,4 @@ function PatientDialog({ isOpen, onClose, onSubmit }) {
   );
 }
 
-export default PatientDialog;
+export default PatientUpdateDialog;
