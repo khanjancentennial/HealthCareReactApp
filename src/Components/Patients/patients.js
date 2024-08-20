@@ -53,6 +53,14 @@ function Patients() {
     if (patient) {
       console.log(patient.id); // Should correctly log the ID
       setSelectedPatientId(patient.id); // Assuming _id is the patient ID
+      setSelectedPatientFirstName(patient.firstName);
+      setSelectedPatientLastName(patient.lastName);
+      setSelectedPatientGender(patient.gender);
+      setSelectedPatientEmail(patient.email);
+      setSelectedPatientPhoneNumber(patient.phoneNumber);
+      setSelectedPatientHeight(patient.height);
+      setSelectedPatientWeight(patient.weight);
+      setSelectedPatientAddress(patient.address);
       setIsUpdatedDialogOpen(true);
     } else {
       console.error('Patient data is not available for index:', index);
@@ -65,15 +73,7 @@ function Patients() {
     console.log(patient);
     if (patient) {
       console.log(patient.id); // Should correctly log the ID
-      setSelectedPatientId(patient.id);// Assuming _id is the patient ID
-      setSelectedPatientFirstName(patient.firstName);
-      setSelectedPatientLastName(patient.lastName);
-      setSelectedPatientGender(patient.gender);
-      setSelectedPatientEmail(patient.email);
-      setSelectedPatientPhoneNumber(patient.phoneNumber);
-      setSelectedPatientHeight(patient.height);
-      setSelectedPatientWeight(patient.weight);
-      setSelectedPatientAddress(patient.address); 
+      setSelectedPatientId(patient.id);// Assuming _id is the patient ID 
       setIsDeleteDialogOpen(true);
     } else {
       console.error('Patient data is not available for index:', index);
@@ -107,7 +107,7 @@ function Patients() {
   };
 
   const handleUpdatedDialogClose = () => {
-    setIsDeleteDialogOpen(false);
+    setIsUpdatedDialogOpen(false);
   };
 
   const handleUpdatedFormSubmit = () => {

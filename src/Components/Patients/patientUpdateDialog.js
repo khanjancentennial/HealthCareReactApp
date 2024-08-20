@@ -174,7 +174,7 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, firstName, 
             {formErrors.address && <p className="error-text">{formErrors.address}</p>}
           </div>
           <div className="form-actions">
-            <button type="submit" className="submit-button">Add Patient</button>
+            <button type="submit" className="submit-button">Update Patient Details</button>
             <button type="button" className="cancel-button" onClick={onClose}>Cancel</button>
           </div>
         </form>
