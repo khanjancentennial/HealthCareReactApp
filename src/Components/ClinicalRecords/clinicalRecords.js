@@ -281,6 +281,7 @@ function ClinicalRecords() {
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleFormSubmit}
+        patientId={patientId}
       />
 
       <PatientClinicalTestDeleteDialog
