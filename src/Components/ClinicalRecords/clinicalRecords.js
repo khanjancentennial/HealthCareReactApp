@@ -5,6 +5,8 @@ import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import ClinicalRecord from '../../Model/ClinicalRecords_Model';
 // import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 import PatientClinicalDataAddDialog from '../ClinicalRecords/patientClinicalDataAddDialog';
 // import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
@@ -21,12 +23,15 @@ class Patient {
     }
   }
 
-function ClinicalRecords({patientId, firstName, lastName}) {
+function ClinicalRecords() {
 //   const { patientId } = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const location = useLocation();
+  const { patientId, firstName, lastName } = location.state || {}; // Use optional chaining
 //   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 //   const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
 //   const [selectedPatientId, setSelectedPatientId] = useState(null);

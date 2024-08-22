@@ -60,7 +60,7 @@ function Patients() {
     if (patient) {
       console.log(patient.id); // Should correctly log the ID
       setSelectedPatientId(patient.id);// Assuming _id is the patient ID 
-      navigate(`/clinical-records`, { state: { patientId: patient.id} });
+      navigate(`/clinical-records`, { state: { patientId: patient.id, firstName: patient.firstName, lastName:patient.lastName} });
     } else {
       console.error('Patient data is not available for index:', index);
     }
