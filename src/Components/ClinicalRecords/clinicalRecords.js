@@ -51,18 +51,30 @@ function ClinicalRecords() {
         patientRecords.__v
       ));
 
-      // Now perform the comparison
-      for (var i = 0; i < patientData.length; i++) {
-        if (patientData[i].patient.id === patientId) {
-          console.log(`Match found for patient with id: ${patientId}`);
-          // Perform any additional logic here if a match is found
-          setPatientData(patientData);
-          setData(patientData);
-          console.log(patientData);
-        } else {
-          console.error('Patient data is not available for index:', i);
-        }
-      }
+      // Filter the data for the records matching the patientId
+    const matchingRecords = patientData.filter(record => record.patient.id === patientId);
+
+    if (matchingRecords.length > 0) {
+      console.log(`Found ${matchingRecords.length} matching records for patient with id: ${patientId}`);
+      // Update state with the filtered data
+      setPatientData(matchingRecords);
+      setData(matchingRecords);
+    } else {
+      console.error(`No records found for patient with id: ${patientId}`);
+    }
+
+    //   // Now perform the comparison
+    //   for (var i = 0; i < patientData.length; i++) {
+    //     if (patientData[i].patient.id === patientId) {
+    //       console.log(`Match found for patient with id: ${patientId}`);
+    //       // Perform any additional logic here if a match is found
+    //       setPatientData(patientData);
+    //       setData(patientData);
+    //       console.log(patientData);
+    //     } else {
+    //       console.error('Patient data is not available for index:', i);
+    //     }
+    //   }
 
       
     } catch (err) {
