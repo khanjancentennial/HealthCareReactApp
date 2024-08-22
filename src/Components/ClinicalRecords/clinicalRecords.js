@@ -208,8 +208,8 @@ function ClinicalRecords({patientId}) {
                 
                 
                     <>
-                    <h3>Patient First Name :- {item[0].patient.firstName}</h3> 
-                    <h3>Patient Last Name :- {item[0].patient.lastName}</h3> 
+                    <h3>Patient First Name :- {data[0].patient.firstName}</h3> 
+                    <h3>Patient Last Name :- {data[0].patient.lastName}</h3> 
                     </>
                 
             ) : (
