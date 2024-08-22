@@ -58,6 +58,7 @@ function ClinicalRecords() {
           // Perform any additional logic here if a match is found
           setPatientData(patientData);
           setData(patientData);
+          console.log(patientData);
         } else {
           console.error('Patient data is not available for index:', i);
         }
