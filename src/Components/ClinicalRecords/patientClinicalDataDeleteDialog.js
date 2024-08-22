@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './patintClinicalDataDeleteDialog.css';
+import './patientClinicalDataDeleteDialog.css';
 import axios from 'axios';
 
 function PatientClinicalTestDeleteDialog({ isOpen, onClose, onSubmit, ClinicalTestId }) {
