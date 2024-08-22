@@ -4,13 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import ClinicalRecord from '../../Model/ClinicalRecords_Model';
-import Patient from '../../Model/Patients_Model';
 import { useParams } from 'react-router-dom';
 
 // import PatientDialog from '../Patients/patientsDialog';
 // import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 // import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
+
+
+// Define the Patient class
+class Patient {
+    constructor(id, firstName, lastName) {
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+  }
 
 function ClinicalRecords() {
   const { patientId } = useParams();
