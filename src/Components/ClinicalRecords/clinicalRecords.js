@@ -5,6 +5,7 @@ import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import ClinicalRecord from '../../Model/ClinicalRecords_Model';
 import Patient from '../../Model/Patients_Model';
+import { useParams } from 'react-router-dom';
 
 // import PatientDialog from '../Patients/patientsDialog';
 // import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
@@ -192,12 +193,12 @@ function ClinicalRecords() {
                   <td>{item.creationDateTime}</td>
                   <td className={item.status === "critical" ? 'critical-text' : 'normal-text'}>{item.status}</td>
                   <td>
-                    <button onClick={() => handleEdit(index)}>
+                    <button >
                       <FontAwesomeIcon icon={faEdit} />
                     </button>
                   </td>
                   <td>
-                    <button onClick={() => handleDelete(index)}>
+                    <button >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                   </td>

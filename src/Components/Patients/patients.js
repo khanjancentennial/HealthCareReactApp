@@ -30,6 +30,8 @@ function Patients() {
   const [selectedPatientGender, setSelectedPatientGender] = useState(null);
   const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
 
+  const navigate = useNavigate(); // Call useNavigate here
+
 
   const fetchData = async () => {
     try {
