@@ -46,6 +46,18 @@ function Patients() {
     fetchData();
   }, []);
 
+  const handleViewClinicalRecords = (index) => {
+    console.log(index);
+    const patient = allPatientData[index];
+    console.log(patient);
+    if (patient) {
+      console.log(patient.id); // Should correctly log the ID
+      navigate(`/clinical-records/${patient.id}`);
+    } else {
+      console.error('Patient data is not available for index:', index);
+    }
+  }
+
   const handleEdit = (index) => {
     console.log(index);
     const patient = allPatientData[index];
@@ -138,6 +150,7 @@ function Patients() {
               <th>Status</th>
               <th>Edit</th>
               <th>Delete</th>
+              <th>View CLinical Tests</th>
             </tr>
           </thead>
           <tbody>
@@ -169,6 +182,11 @@ function Patients() {
                   <td>
                     <button onClick={() => handleDelete(index)}>
                       <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleViewClinicalRecords(index)}>
+                      View Clinical Records
                     </button>
                   </td>
                 </tr>

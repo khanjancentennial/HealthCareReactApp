@@ -6,6 +6,7 @@ import About from './Components/About/about';
 import ContactUs from './Components/Contact US/contactus';
 import Login from './Components/Login/login';
 import Patients from './Components/Patients/patients';
+import ClinicalRecords from './Components/ClinicalRecords/clinicalRecords';
 import Dashboard from './Components/Dashboard/dashboard'; // Import your protected component
 
 import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
@@ -77,6 +78,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/patients" element={<Patients />} />
+        <Route path="/clinical-records/:patientId" element={<ClinicalRecords />} />
         <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
       </AuthProvider>
