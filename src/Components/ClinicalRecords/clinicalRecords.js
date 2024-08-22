@@ -206,13 +206,11 @@ function ClinicalRecords({patientId}) {
         <div>
             {data.length > 0 ? (
                 
-                data.map((item) => (
+                
                     <>
                     <h3>Patient First Name :- {item[0].patient.firstName}</h3> 
                     <h3>Patient Last Name :- {item[0].patient.lastName}</h3> 
                     </>
-                )
-            )
                 
             ) : (
                 <h3>No patient records available</h3>
