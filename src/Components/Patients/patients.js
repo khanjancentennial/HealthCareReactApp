@@ -9,6 +9,9 @@ import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
 
+import { useNavigate } from 'react-router-dom';
+
+
 function Patients() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
