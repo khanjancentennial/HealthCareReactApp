@@ -6,7 +6,7 @@ import axios from 'axios';
 import ClinicalRecord from '../../Model/ClinicalRecords_Model';
 // import { useParams } from 'react-router-dom';
 
-import PatientClinicalDataAddDialog from '../ClinicalRecords/';
+import PatientClinicalDataAddDialog from '../ClinicalRecords/patientClinicalDataAddDialog';
 // import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 // import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
@@ -271,6 +271,7 @@ function ClinicalRecords({patientId}) {
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleFormSubmit}
+        patientId={patientId}
       />
 
       {/* <PatientDeleteDialog
