@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './patients.css';
+import './clinicalRecords.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
