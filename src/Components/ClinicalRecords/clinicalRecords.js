@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 
 
 import PatientClinicalDataAddDialog from '../ClinicalRecords/patientClinicalDataAddDialog';
-// import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
+import PatientClinicalTestDeleteDialog from '../ClinicalRecords/patientClinicalDataDeleteDialog';
 
 // import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
 
@@ -32,9 +32,9 @@ function ClinicalRecords() {
 
   const location = useLocation();
   const { patientId, firstName, lastName } = location.state || {}; // Use optional chaining
-//   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 //   const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
-//   const [selectedPatientId, setSelectedPatientId] = useState(null);
+  const [selectedClinicalTestId, setSelectedClinicalTestId] = useState(null);
 //   const [selectedPatientfirstName, setSelectedPatientFirstName] = useState(null);
 //   const [selectedPatientLastName, setSelectedPatientLastName] = useState(null);
 //   const [selectedPatientEmail, setSelectedPatientEmail] = useState(null);
@@ -151,18 +151,18 @@ function ClinicalRecords() {
 //     }
 //   };
 
-//   const handleDelete = (index) => {
-//     console.log(index);
-//     const patient = allPatientData[index];
-//     console.log(patient);
-//     if (patient) {
-//       console.log(patient.id); // Should correctly log the ID
-//       setSelectedPatientId(patient.id);// Assuming _id is the patient ID 
-//       setIsDeleteDialogOpen(true);
-//     } else {
-//       console.error('Patient data is not available for index:', index);
-//     }
-//   };
+  const handleDelete = (index) => {
+    console.log(index);
+    const ClinicalRecord = allPatientData[index];
+    console.log(ClinicalRecord);
+    if (ClinicalRecord) {
+      console.log(ClinicalRecord.id); // Should correctly log the ID
+      setSelectedClinicalTestId(ClinicalRecord.id);// Assuming _id is the patient ID 
+      setIsDeleteDialogOpen(true);
+    } else {
+      console.error('Clinical test data is not available for index:', index);
+    }
+  };
   
 
   const handleDialogOpen = () => {
@@ -179,16 +179,16 @@ function ClinicalRecords() {
     // Add the logic to submit the form data to the server here
   };
 
-//   const handleDeleteDialogClose = () => {
-//     setIsDeleteDialogOpen(false);
-//   };
+  const handleDeleteDialogClose = () => {
+    setIsDeleteDialogOpen(false);
+  };
 
-//   const handleDeleteFormSubmit = () => {
-//     // Refresh patient list or handle UI update here
-//     console.log('Patient deleted');
-//     fetchData();
-//     // Optionally refetch patient list after deletion
-//   };
+  const handleDeleteFormSubmit = () => {
+    // Refresh patient list or handle UI update here
+    console.log('Clinical test deleted');
+    fetchData();
+    // Optionally refetch patient list after deletion
+  };
 
 //   const handleUpdatedDialogClose = () => {
 //     setIsUpdatedDialogOpen(false);
@@ -281,17 +281,16 @@ function ClinicalRecords() {
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleFormSubmit}
-        patientId={patientId}
       />
 
-      {/* <PatientDeleteDialog
+      <PatientClinicalTestDeleteDialog
         isOpen={isDeleteDialogOpen}
         onClose={handleDeleteDialogClose}
         onSubmit={handleDeleteFormSubmit}
-        patientId={selectedPatientId}
+        ClinicalTestId={selectedClinicalTestId}
       />
 
-      <PatientUpdatedDialog
+      {/* <PatientUpdatedDialog
         isOpen={isUpdatedDialogOpen}
         onClose={handleUpdatedDialogClose}
         onSubmit={handleUpdatedFormSubmit}

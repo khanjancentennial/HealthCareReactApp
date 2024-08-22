@@ -46,10 +46,10 @@ function PatientClinicalDataAddDialog({ isOpen, onClose, onSubmit,patientId }) {
     if (!formData.respiratoryRate || isNaN(formData.respiratoryRate) || formData.respiratoryRate <= 0) errors.respiratoryRate = 'Respiratory Rate is required';
     if (!formData.bloodOxygenLevel || isNaN(formData.bloodOxygenLevel) || formData.bloodOxygenLevel <= 0) errors.bloodOxygenLevel = 'Blood Oxygen Level is required';
     if (!formData.heartbeatRate || isNaN(formData.heartbeatRate) || formData.heartbeatRate <= 0) errors.heartbeatRate = 'Heartbeat Rate Rate is required';
-    if (!formData.chiefComplaint) errors.chiefComplaint = 'Address is required';
-    if (!formData.pastMedicalHistory) errors.pastMedicalHistory = 'Address is required';
-    if (!formData.medicalDiagnosis) errors.medicalDiagnosis = 'Address is required';
-    if (!formData.medicalPrescription) errors.medicalPrescription = 'Address is required';
+    if (!formData.chiefComplaint) errors.chiefComplaint = 'Chief Complaint is required';
+    if (!formData.pastMedicalHistory) errors.pastMedicalHistory = 'past Medical History is required';
+    if (!formData.medicalDiagnosis) errors.medicalDiagnosis = 'Medical Diagnosis is required';
+    if (!formData.medicalPrescription) errors.medicalPrescription = 'Medical Prescription is required';
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -145,10 +145,10 @@ function PatientClinicalDataAddDialog({ isOpen, onClose, onSubmit,patientId }) {
           </div>
 
           <div className="form-group">
-            <label>chief Complaint</label>
+            <label>Chief Complaint</label>
             <input
               type="text"
-              name="address"
+              name="chiefComplaint"
               value={formData.chiefComplaint}
               onChange={handleInputChange}
             />
