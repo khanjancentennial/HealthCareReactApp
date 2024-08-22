@@ -78,7 +78,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/patients" element={<Patients />} />
-        <Route path="/clinical-records/:patientId" element={<ClinicalRecords />} />
+        <Route path="/clinical-records" element={<ClinicalRecords />} />
         <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
       </AuthProvider>
