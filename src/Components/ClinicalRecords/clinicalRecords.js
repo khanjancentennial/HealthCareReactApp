@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import ClinicalRecord from '../../Model/ClinicalRecords_Model';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
-// import PatientDialog from '../Patients/patientsDialog';
+import PatientClinicalDataAddDialog from '../ClinicalRecords/';
 // import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 // import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
@@ -21,12 +21,12 @@ class Patient {
     }
   }
 
-function ClinicalRecords() {
-  const { patientId } = useParams();
+function ClinicalRecords({patientId}) {
+//   const { patientId } = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-//   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 //   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 //   const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
 //   const [selectedPatientId, setSelectedPatientId] = useState(null);
@@ -39,6 +39,29 @@ function ClinicalRecords() {
 //   const [selectedPatientAddress, setSelectedPatientAddress] = useState(null);
 //   const [selectedPatientGender, setSelectedPatientGender] = useState(null);
   const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
+
+
+  const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    
+    const pad = (num) => num.toString().padStart(2, '0');
+  
+    const day = pad(date.getDate());
+    const month = pad(date.getMonth() + 1);
+    const year = date.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+  
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const seconds = pad(date.getSeconds());
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+  
+    return {
+      date: formattedDate,
+      time: formattedTime
+    };
+  };
+
 
 
   const fetchData = async () => {
@@ -66,8 +89,13 @@ function ClinicalRecords() {
     if (matchingRecords.length > 0) {
       console.log(`Found ${matchingRecords.length} matching records for patient with id: ${patientId}`);
       // Update state with the filtered data
-      setPatientData(matchingRecords);
-      setData(matchingRecords);
+      // Format creationDateTime for each record
+      const formattedRecords = matchingRecords.map(record => ({
+        ...record,
+        formattedCreationDate: formatDateTime(record.creationDateTime)
+      }));
+      setPatientData(formattedRecords);
+      setData(formattedRecords);
     } else {
       console.error(`No records found for patient with id: ${patientId}`);
     }
@@ -132,19 +160,19 @@ function ClinicalRecords() {
 //   };
   
 
-//   const handleDialogOpen = () => {
-//     setIsDialogOpen(true);
-//   };
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true);
+  };
 
-//   const handleDialogClose = () => {
-//     setIsDialogOpen(false);
-//   };
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
 
-//   const handleFormSubmit = (formData) => {
-//     console.log('Form data submitted:', formData);
-//     fetchData();
-//     // Add the logic to submit the form data to the server here
-//   };
+  const handleFormSubmit = (formData) => {
+    console.log('Form data submitted:', formData);
+    fetchData();
+    // Add the logic to submit the form data to the server here
+  };
 
 //   const handleDeleteDialogClose = () => {
 //     setIsDeleteDialogOpen(false);
@@ -171,10 +199,12 @@ function ClinicalRecords() {
   return (
     <div>
       <div className="button-container">
-        <button className="add-patient-button" ><FontAwesomeIcon icon={faAdd}/> Add New Record</button>
+        <button className="add-patient-button" onClick={handleDialogOpen}><FontAwesomeIcon icon={faAdd}/> Add New Record</button>
       </div>
       <center>Patient's All Records</center>
       <div className="table-container">
+        <h3>Patient First Name :- {data[0].patient.firstName}</h3> 
+        <h3>Patient Last Name :- {data[0].patient.firstName}</h3> 
         <table>
           <thead>
             <tr>
@@ -186,7 +216,8 @@ function ClinicalRecords() {
               <th>Past Medical History</th>
               <th>Medical Diagnosis</th>
               <th>Medical Prescription</th>
-              <th>creationDateTime</th>
+              <th>Clinical Test Date</th>
+              <th>Clinical Test Time</th>
               <th>Status</th>
               <th>Edit</th>
               <th>Delete</th>
@@ -212,7 +243,8 @@ function ClinicalRecords() {
                   <td>{item.pastMedicalHistory}</td>
                   <td>{item.medicalDiagnosis}</td>
                   <td>{item.medicalPrescription}</td>
-                  <td>{item.creationDateTime}</td>
+                  <td>{item.formattedCreationDate.date}</td>
+                  <td>{item.formattedCreationDate.time}</td>
                   <td className={item.status === "critical" ? 'critical-text' : 'normal-text'}>{item.status}</td>
                   <td>
                     <button >
@@ -235,13 +267,13 @@ function ClinicalRecords() {
         </table>
       </div>
 
-      {/* <PatientDialog
+      <PatientClinicalDataAddDialog
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleFormSubmit}
       />
 
-      <PatientDeleteDialog
+      {/* <PatientDeleteDialog
         isOpen={isDeleteDialogOpen}
         onClose={handleDeleteDialogClose}
         onSubmit={handleDeleteFormSubmit}

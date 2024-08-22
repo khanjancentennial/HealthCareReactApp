@@ -9,7 +9,9 @@ import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
 
-import { useNavigate } from 'react-router-dom';
+import ClinicalRecords from '../ClinicalRecords/clinicalRecords';
+
+// import { useNavigate } from 'react-router-dom';
 
 
 function Patients() {
@@ -30,7 +32,7 @@ function Patients() {
   const [selectedPatientGender, setSelectedPatientGender] = useState(null);
   const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
 
-  const navigate = useNavigate(); // Call useNavigate here
+  // const navigate = useNavigate(); // Call useNavigate here
 
 
   const fetchData = async () => {
@@ -57,7 +59,8 @@ function Patients() {
     console.log(patient);
     if (patient) {
       console.log(patient.id); // Should correctly log the ID
-      navigate(`/clinical-records/${patient.id}`);
+      setSelectedPatientId(patient.id);// Assuming _id is the patient ID 
+      // navigate(`/clinical-records/${patient.id}`);
     } else {
       console.error('Patient data is not available for index:', index);
     }
@@ -231,6 +234,9 @@ function Patients() {
         height={selectedPatientHeight}
         email={selectedPatientEmail}
         phoneNumber={selectedPatientPhoneNumber}
+      />
+      <ClinicalRecords
+        patientId={selectedPatientId}
       />
     </div>
   );
