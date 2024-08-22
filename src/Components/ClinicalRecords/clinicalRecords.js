@@ -262,7 +262,7 @@ function ClinicalRecords() {
                     </button>
                   </td>
                   <td>
-                    <button >
+                    <button onClick={() => handleDelete(index)}>
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                   </td>
