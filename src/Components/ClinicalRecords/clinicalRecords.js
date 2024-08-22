@@ -21,7 +21,7 @@ class Patient {
     }
   }
 
-function ClinicalRecords({patientId}) {
+function ClinicalRecords({patientId, firstName, lastName}) {
 //   const { patientId } = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -204,17 +204,10 @@ function ClinicalRecords({patientId}) {
       <center>Patient's All Records</center>
       <div className="table-container">
         <div>
-            {data.length > 0 ? (
-                
-                
-                    <>
-                    <h3>Patient First Name :- {data[0].patient.firstName}</h3> 
-                    <h3>Patient Last Name :- {data[0].patient.lastName}</h3> 
-                    </>
-                
-            ) : (
-                <h3>No patient records available</h3>
-            )}
+            
+            <h3>Patient First Name :- {firstName}</h3> 
+            <h3>Patient Last Name :- {lastName}</h3> 
+                   
         </div>
         
         <table>

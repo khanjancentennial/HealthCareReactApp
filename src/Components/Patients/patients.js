@@ -237,6 +237,8 @@ function Patients() {
       />
       <ClinicalRecords
         patientId={selectedPatientId}
+        firstName={selectedPatientfirstName}
+        lastName={selectedPatientLastName}
       />
     </div>
   );
