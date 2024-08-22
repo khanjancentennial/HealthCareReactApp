@@ -3,6 +3,19 @@ import '../ClinicalRecords/patientClinicalDataAddDialog.css';
 import axios from 'axios';
 
 function PatientClinicalDataAddDialog({ isOpen, onClose, onSubmit,patientId }) {
+
+    const now = new Date();
+  
+    const year = now.getUTCFullYear();
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(now.getUTCDate()).padStart(2, '0');
+    const hours = String(now.getUTCHours()).padStart(2, '0');
+    const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+    
+    
+
+
   const [formData, setFormData] = useState({
     bloodPressure: '',
     respiratoryRate: '',
@@ -12,7 +25,7 @@ function PatientClinicalDataAddDialog({ isOpen, onClose, onSubmit,patientId }) {
     pastMedicalHistory: '',
     medicalDiagnosis: '',
     medicalPrescription: '',
-    creationDateTime: "2023-11-01T10:30:00Z",
+    creationDateTime: `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`,
     patientId: patientId,
   });
 
