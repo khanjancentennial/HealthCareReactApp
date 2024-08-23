@@ -9,7 +9,7 @@ import PatientDeleteDialog from '../Patients/patientsDeleteDialog';
 
 import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
 
-import ClinicalRecords from '../ClinicalRecords/clinicalRecords';
+// import ClinicalRecords from '../ClinicalRecords/clinicalRecords';
 
 import { useNavigate } from 'react-router-dom';
 

@@ -27,6 +27,8 @@
 .logo {
     display: flex;
     color: red;
+    height: 70px;
+    width: 300px;
 }
 ul {
     list-style-type: none;

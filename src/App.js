@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from './Components/NavBar/navbar';
+import Footer from './Components/Footer/footer';
 import Home from './Components/Home/home';
 import History from './Components/History/history';
 import About from './Components/About/about';
@@ -81,6 +82,7 @@ function App() {
         <Route path="/clinical-records" element={<ClinicalRecords />} />
         <Route path="/protected" element={<ProtectedRoute element={<Dashboard />} user={user} />} />
       </Routes>
+      <Footer/>
       </AuthProvider>
     </Router>
    

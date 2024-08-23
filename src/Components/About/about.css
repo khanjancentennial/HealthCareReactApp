@@ -1,0 +1,198 @@
+/* about.css */
+
+.aboutus-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: rgb(230, 209, 209);
+}
+
+.aboutus-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 100px;
+}
+
+.aboutus-image {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.aboutus-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.aboutus-text {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.aboutus-title {
+    font-size: 2.5rem;
+    margin: 0;
+    color: red;
+    margin-bottom: 50px;
+    font-weight: 900;
+}
+
+.aboutus-description {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #34495e;
+    font-weight: 500;
+}
+
+/* Service section styles */
+
+.aboutus-services-title {
+    
+    text-align: center;
+    background-color: white;
+    color: red;
+    font-weight: 900;
+    font-size: 1.5rem;
+    
+}
+
+.aboutus-services {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.service-item {
+    flex: 1;
+    min-width: 220px;
+    background-color: rgb(249, 30, 30);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.service-image {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.service-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.service-description {
+    font-size: 1rem;
+}
+
+
+/* Team section styles */
+
+.aboutus-team-title {
+    
+    text-align: center;
+    background-color: white;
+    color: red;
+    font-weight: 900;
+    font-size: 1.5rem;
+    
+}
+
+.aboutus-team {
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+    background-color: white;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-top: 20px;
+}
+
+.team-item {
+    flex: 1;
+    min-width: 220px;
+    background-color: rgb(212, 207, 207);
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.team-image {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.team-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.team-description {
+    font-size: 1rem;
+}
+
+
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .aboutus-container {
+        padding: 20px;
+    }
+
+    .aboutus-content {
+        flex-direction: column;
+    }
+
+    .aboutus-image {
+        margin-bottom: 20px;
+    }
+
+    .aboutus-text {
+        text-align: center;
+    }
+
+    .aboutus-title {
+        font-size: 2rem;
+    }
+
+    .aboutus-description {
+        font-size: 1rem;
+    }
+
+    .aboutus-services {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-item {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .aboutus-team {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-item {
+        width: 100%;
+        max-width: 300px;
+    }
+}

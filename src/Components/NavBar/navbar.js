@@ -2,18 +2,21 @@ import React from 'react'
 import './navbar.css'
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../Components/AuthContext/authContext'; // Adjust the import path as necessary
-
+import logo from '../../Assets/kclinicLogo.png';
 
 
 function NavBar() {
   const { user, onLogout } = useAuth();
   return (
     <div className="navbar">
+        
+        
+        <NavLink to='/'>
         <div className="logo">
-            <h1>
-                KClinic
-            </h1>
+        <img src={logo}  />
         </div>
+        </NavLink>
+      
         <ul className="navbar-menu">
           
             <li> 
@@ -24,9 +27,9 @@ function NavBar() {
               <li> 
               <NavLink to='/about' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>About</NavLink>
               </li>
-              <li> 
-              <NavLink to='history' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>History</NavLink>
-              </li>
+              {/* <li> 
+              <NavLink to='/history' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>History</NavLink>
+              </li> */}
               <li> 
               <NavLink to='/contactus' className={({ isActive }) => (isActive ? 'navbar-menu active' : 'navbar-menu')}>Contact US</NavLink>
               </li>
