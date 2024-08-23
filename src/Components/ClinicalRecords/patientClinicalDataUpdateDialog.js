@@ -73,9 +73,9 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, bloodPressu
     e.preventDefault();
     if (validateForm()) {
       try {
+        console.log(...formData);
         const response = await axios.put(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${clinicalTestId}`, {
           ...formData,
-          
         }, {
           headers: {
             'Content-Type': 'application/json',
