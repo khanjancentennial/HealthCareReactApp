@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../ClinicalRecords/patientClinicalDataUpdateDialog.css';
 import axios from 'axios';
 
-function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, bloodPressure, respiratoryRate, 
-  bloodOxygenLevel, heartbeatRate, chiefComplaint, pastMedicalHistory,  medicalDiagnosis, medicalPrescription, clinicalTestId }) {
+function PatientClinicalDataUpdateDialog({ isOpen, onClose, onSubmit, patientId, bloodPressure, respiratoryRate, 
+  bloodOxygenLevel, heartbeatRate, chiefComplaint, pastMedicalHistory,  medicalDiagnosis, medicalPrescription, ClinicalTestId }) {
 
     const now = new Date();
   
@@ -73,9 +73,8 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, bloodPressu
     e.preventDefault();
     if (validateForm()) {
       try {
-        console.log(...formData);
-        const response = await axios.put(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${clinicalTestId}`, {
-          ...formData,
+        const response = await axios.put(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${ClinicalTestId}`, {
+          formData,
           bloodPressure: Number(formData.bloodPressure),
           respiratoryRate: Number(formData.respiratoryRate),
           bloodOxygenLevel: Number(formData.bloodOxygenLevel),
@@ -211,4 +210,4 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, bloodPressu
   );
 }
 
-export default PatientUpdateDialog;
+export default PatientClinicalDataUpdateDialog;

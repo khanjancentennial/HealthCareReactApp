@@ -289,7 +289,7 @@ function ClinicalRecords() {
         isOpen={isDeleteDialogOpen}
         onClose={handleDeleteDialogClose}
         onSubmit={handleDeleteFormSubmit}
-        clinicalTestId={selectedClinicalTestId}
+        ClinicalTestId={selectedClinicalTestId}
       />
 
       <PatientClinicalTestUpdatedDialog
@@ -305,7 +305,7 @@ function ClinicalRecords() {
         pastMedicalHistory={selectedPatientPastMedicalHistory}
         medicalDiagnosis={selectedPatientMedicalDiagnosis}
         medicalPrescription={selectedPatientMedicalPrescription}
-        clinicalTestId={selectedClinicalTestId}
+        ClinicalTestId={selectedClinicalTestId}
       />
     </div>
   );
