@@ -76,6 +76,10 @@ function PatientUpdateDialog({ isOpen, onClose, onSubmit, patientId, bloodPressu
         console.log(...formData);
         const response = await axios.put(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${clinicalTestId}`, {
           ...formData,
+          bloodPressure: Number(formData.bloodPressure),
+          respiratoryRate: Number(formData.respiratoryRate),
+          bloodOxygenLevel: Number(formData.bloodOxygenLevel),
+          heartbeatRate: Number(formData.heartbeatRate),
         }, {
           headers: {
             'Content-Type': 'application/json',
