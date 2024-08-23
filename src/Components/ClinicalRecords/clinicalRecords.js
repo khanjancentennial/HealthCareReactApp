@@ -292,7 +292,7 @@ function ClinicalRecords() {
         ClinicalTestId={selectedClinicalTestId}
       />
 
-      <PatientUpdatedDialog
+      <PatientClinicalTestUpdatedDialog
         isOpen={isUpdatedDialogOpen}
         onClose={handleUpdatedDialogClose}
         onSubmit={handleUpdatedFormSubmit}
