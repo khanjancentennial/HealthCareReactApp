@@ -76,11 +76,17 @@ function PatientClinicalDataUpdateDialog({ isOpen, onClose, onSubmit, patientId,
     if (validateForm()) {
       try {
         const response = await axios.put(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${ClinicalTestId}`, {
-          ...formData,
           bloodPressure: Number(formData.bloodPressure),
           respiratoryRate: Number(formData.respiratoryRate),
           bloodOxygenLevel: Number(formData.bloodOxygenLevel),
           heartbeatRate: Number(formData.heartbeatRate),
+          chiefComplaint: formData.chiefComplaint || '',
+          pastMedicalHistory: formData.pastMedicalHistory || '',
+          medicalDiagnosis: formData.medicalDiagnosis || '',
+          medicalPrescription : formData.medicalPrescription || '',
+          creationDateTime: `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`,
+          patientId: patientId,
+
         }, {
           headers: {
             'Content-Type': 'application/json',
