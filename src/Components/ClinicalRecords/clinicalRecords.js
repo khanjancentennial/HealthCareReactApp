@@ -44,7 +44,7 @@ function ClinicalRecords() {
   const [selectedPatientPastMedicalHistory, setSelectedPatientpastMedicalHistory] = useState(null);
   const [selectedPatientMedicalDiagnosis, setSelectedPatientmedicalDiagnosis] = useState(null);
   const [selectedPatientMedicalPrescription, setSelectedPatientmedicalPrescription] = useState(null);
-  const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
+  const [allPatientClinicalData, setPatientClinicalData] = useState([]); // Global state variable to hold patient data
 
 
   const formatDateTime = (dateTime) => {
@@ -100,7 +100,7 @@ function ClinicalRecords() {
         ...record,
         formattedCreationDate: formatDateTime(record.creationDateTime)
       }));
-      setPatientData(formattedRecords);
+      setPatientClinicalData(formattedRecords);
       setData(formattedRecords);
     } else {
       console.error(`No records found for patient with id: ${patientId}`);
@@ -133,7 +133,7 @@ function ClinicalRecords() {
 
   const handleEdit = (index) => {
     console.log(index);
-    const clinicalTest = allPatientData[index];
+    const clinicalTest = allPatientClinicalData[index];
     console.log(clinicalTest);
     if (clinicalTest) {
       console.log(clinicalTest.id); // Should correctly log the ID
@@ -154,7 +154,7 @@ function ClinicalRecords() {
 
   const handleDelete = (index) => {
     console.log(index);
-    const ClinicalRecord = allPatientData[index];
+    const ClinicalRecord = allPatientClinicalData[index];
     console.log(ClinicalRecord);
     if (ClinicalRecord) {
       console.log(ClinicalRecord.id); // Should correctly log the ID
@@ -258,7 +258,7 @@ function ClinicalRecords() {
                   <td>{item.formattedCreationDate.time}</td>
                   <td className={item.status === "critical" ? 'critical-text' : 'normal-text'}>{item.status}</td>
                   <td>
-                    <button >
+                    <button onClick={() => handleEdit(index)}>
                       <FontAwesomeIcon icon={faEdit} />
                     </button>
                   </td>
