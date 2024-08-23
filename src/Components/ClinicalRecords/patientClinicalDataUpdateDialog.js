@@ -14,6 +14,8 @@ function PatientClinicalDataUpdateDialog({ isOpen, onClose, onSubmit, patientId,
     const minutes = String(now.getUTCMinutes()).padStart(2, '0');
     const seconds = String(now.getUTCSeconds()).padStart(2, '0');
 
+    console.log(patientId);
+    console.log(ClinicalTestId);
   const [formData, setFormData] = useState({
     bloodPressure: '',
     respiratoryRate: '',
@@ -74,7 +76,7 @@ function PatientClinicalDataUpdateDialog({ isOpen, onClose, onSubmit, patientId,
     if (validateForm()) {
       try {
         const response = await axios.put(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${ClinicalTestId}`, {
-          formData,
+          ...formData,
           bloodPressure: Number(formData.bloodPressure),
           respiratoryRate: Number(formData.respiratoryRate),
           bloodOxygenLevel: Number(formData.bloodOxygenLevel),
