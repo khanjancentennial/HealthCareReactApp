@@ -154,11 +154,11 @@ function ClinicalRecords() {
 
   const handleDelete = (index) => {
     console.log(index);
-    const ClinicalRecord = allPatientClinicalData[index];
-    console.log(ClinicalRecord);
-    if (ClinicalRecord) {
-      console.log(ClinicalRecord.id); // Should correctly log the ID
-      setSelectedClinicalTestId(ClinicalRecord.id);// Assuming _id is the patient ID 
+    const clinicalRecord = allPatientClinicalData[index];
+    console.log(clinicalRecord);
+    if (clinicalRecord) {
+      console.log(clinicalRecord.id); // Should correctly log the ID
+      setSelectedClinicalTestId(clinicalRecord.id);// Assuming _id is the patient ID 
       setIsDeleteDialogOpen(true);
     } else {
       console.error('Clinical test data is not available for index:', index);
@@ -197,7 +197,7 @@ function ClinicalRecords() {
 
   const handleUpdatedFormSubmit = () => {
     // Refresh patient list or handle UI update here
-    console.log('Patient Updated');
+    console.log('Patient Clinical Data Updated');
     fetchData();
     // Optionally refetch patient list after deletion
   };
@@ -289,7 +289,7 @@ function ClinicalRecords() {
         isOpen={isDeleteDialogOpen}
         onClose={handleDeleteDialogClose}
         onSubmit={handleDeleteFormSubmit}
-        ClinicalTestId={selectedClinicalTestId}
+        clinicalTestId={selectedClinicalTestId}
       />
 
       <PatientClinicalTestUpdatedDialog
@@ -305,7 +305,7 @@ function ClinicalRecords() {
         pastMedicalHistory={selectedPatientPastMedicalHistory}
         medicalDiagnosis={selectedPatientMedicalDiagnosis}
         medicalPrescription={selectedPatientMedicalPrescription}
-        clinicalTestId = {selectedClinicalTestId}
+        clinicalTestId={selectedClinicalTestId}
       />
     </div>
   );
