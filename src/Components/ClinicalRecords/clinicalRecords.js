@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 import PatientClinicalDataAddDialog from '../ClinicalRecords/patientClinicalDataAddDialog';
 import PatientClinicalTestDeleteDialog from '../ClinicalRecords/patientClinicalDataDeleteDialog';
 
-// import PatientUpdatedDialog from '../Patients/patientUpdateDialog';
+import PatientClinicalTestUpdatedDialog from '../ClinicalRecords/patientClinicalDataUpdateDialog';
 
 
 // Define the Patient class
@@ -33,16 +33,17 @@ function ClinicalRecords() {
   const location = useLocation();
   const { patientId, firstName, lastName } = location.state || {}; // Use optional chaining
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-//   const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
+  const [isUpdatedDialogOpen, setIsUpdatedDialogOpen] = useState(false);
   const [selectedClinicalTestId, setSelectedClinicalTestId] = useState(null);
-//   const [selectedPatientfirstName, setSelectedPatientFirstName] = useState(null);
-//   const [selectedPatientLastName, setSelectedPatientLastName] = useState(null);
-//   const [selectedPatientEmail, setSelectedPatientEmail] = useState(null);
-//   const [selectedPatientPhoneNumber, setSelectedPatientPhoneNumber] = useState(null);
-//   const [selectedPatientHeight, setSelectedPatientHeight] = useState(null);
-//   const [selectedPatientWeight, setSelectedPatientWeight] = useState(null);
-//   const [selectedPatientAddress, setSelectedPatientAddress] = useState(null);
-//   const [selectedPatientGender, setSelectedPatientGender] = useState(null);
+
+  const [selectedPatientBloodPressure, setSelectedPatientbloodPressure] = useState(null);
+  const [selectedPatientRespiratoryRate, setSelectedPatientrespiratoryRate] = useState(null);
+  const [selectedPatientBloodOxygenLevel, setSelectedPatientbloodOxygenLevel] = useState(null);
+  const [selectedPatientHeartbeatRate, setSelectedPatientheartbeatRate] = useState(null);
+  const [selectedPatientChiefComplaint, setSelectedPatientchiefComplaint] = useState(null);
+  const [selectedPatientPastMedicalHistory, setSelectedPatientpastMedicalHistory] = useState(null);
+  const [selectedPatientMedicalDiagnosis, setSelectedPatientmedicalDiagnosis] = useState(null);
+  const [selectedPatientMedicalPrescription, setSelectedPatientmedicalPrescription] = useState(null);
   const [allPatientData, setPatientData] = useState([]); // Global state variable to hold patient data
 
 
@@ -130,26 +131,26 @@ function ClinicalRecords() {
     fetchData();
   }, [patientId]);
 
-//   const handleEdit = (index) => {
-//     console.log(index);
-//     const patient = allPatientData[index];
-//     console.log(patient);
-//     if (patient) {
-//       console.log(patient.id); // Should correctly log the ID
-//       setSelectedPatientId(patient.id); // Assuming _id is the patient ID
-//       setSelectedPatientFirstName(patient.firstName);
-//       setSelectedPatientLastName(patient.lastName);
-//       setSelectedPatientGender(patient.gender);
-//       setSelectedPatientEmail(patient.email);
-//       setSelectedPatientPhoneNumber(patient.phoneNumber);
-//       setSelectedPatientHeight(patient.height);
-//       setSelectedPatientWeight(patient.weight);
-//       setSelectedPatientAddress(patient.address);
-//       setIsUpdatedDialogOpen(true);
-//     } else {
-//       console.error('Patient data is not available for index:', index);
-//     }
-//   };
+  const handleEdit = (index) => {
+    console.log(index);
+    const clinicalTest = allPatientData[index];
+    console.log(clinicalTest);
+    if (clinicalTest) {
+      console.log(clinicalTest.id); // Should correctly log the ID
+      setSelectedClinicalTestId(clinicalTest.id); 
+      setSelectedPatientbloodPressure(clinicalTest.bloodPressure);
+      setSelectedPatientrespiratoryRate(clinicalTest.respiratoryRate);
+      setSelectedPatientbloodOxygenLevel(clinicalTest.bloodOxygenLevel);
+      setSelectedPatientheartbeatRate(clinicalTest.heartbeatRate);
+      setSelectedPatientchiefComplaint(clinicalTest.chiefComplaint);
+      setSelectedPatientpastMedicalHistory(clinicalTest.pastMedicalHistory);
+      setSelectedPatientmedicalDiagnosis(clinicalTest.medicalDiagnosis);
+      setSelectedPatientmedicalPrescription(clinicalTest.medicalPrescription);
+      setIsUpdatedDialogOpen(true);
+    } else {
+      console.error('Patient data is not available for index:', index);
+    }
+  };
 
   const handleDelete = (index) => {
     console.log(index);
@@ -190,16 +191,16 @@ function ClinicalRecords() {
     // Optionally refetch patient list after deletion
   };
 
-//   const handleUpdatedDialogClose = () => {
-//     setIsUpdatedDialogOpen(false);
-//   };
+  const handleUpdatedDialogClose = () => {
+    setIsUpdatedDialogOpen(false);
+  };
 
-//   const handleUpdatedFormSubmit = () => {
-//     // Refresh patient list or handle UI update here
-//     console.log('Patient Updated');
-//     fetchData();
-//     // Optionally refetch patient list after deletion
-//   };
+  const handleUpdatedFormSubmit = () => {
+    // Refresh patient list or handle UI update here
+    console.log('Patient Updated');
+    fetchData();
+    // Optionally refetch patient list after deletion
+  };
 
   return (
     <div>
@@ -291,20 +292,21 @@ function ClinicalRecords() {
         ClinicalTestId={selectedClinicalTestId}
       />
 
-      {/* <PatientUpdatedDialog
+      <PatientUpdatedDialog
         isOpen={isUpdatedDialogOpen}
         onClose={handleUpdatedDialogClose}
         onSubmit={handleUpdatedFormSubmit}
-        patientId={selectedPatientId}
-        firstName={selectedPatientfirstName}
-        lastName={selectedPatientLastName}
-        gender={selectedPatientGender}
-        address={selectedPatientAddress}
-        weight={selectedPatientWeight}
-        height={selectedPatientHeight}
-        email={selectedPatientEmail}
-        phoneNumber={selectedPatientPhoneNumber}
-      /> */}
+        patientId={patientId}
+        bloodPressure={selectedPatientBloodPressure}
+        respiratoryRate={selectedPatientRespiratoryRate}
+        bloodOxygenLevel={selectedPatientBloodOxygenLevel}
+        heartbeatRate={selectedPatientHeartbeatRate}
+        chiefComplaint={selectedPatientChiefComplaint}
+        pastMedicalHistory={selectedPatientPastMedicalHistory}
+        medicalDiagnosis={selectedPatientMedicalDiagnosis}
+        medicalPrescription={selectedPatientMedicalPrescription}
+        clinicalTestId = {selectedClinicalTestId}
+      />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './patientClinicalDataDeleteDialog.css';
 import axios from 'axios';
 
-function PatientClinicalTestDeleteDialog({ isOpen, onClose, onSubmit, ClinicalTestId }) {
+function PatientClinicalTestDeleteDialog({ isOpen, onClose, onSubmit, clinicalTestId }) {
   const [message, setMessage] = useState('');
 
   
@@ -13,8 +13,8 @@ function PatientClinicalTestDeleteDialog({ isOpen, onClose, onSubmit, ClinicalTe
 
   const handleDelete = async () => {
     try {
-      console.log(ClinicalTestId)
-      const response = await axios.delete(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${ClinicalTestId}`);
+      console.log(clinicalTestId)
+      const response = await axios.delete(`https://group3-mapd713.onrender.com/api/clinical-tests/clinical-tests/${clinicalTestId}`);
       setMessage(response.data.message);
       onSubmit(); // Callback to refresh the patient list or handle UI update
       onClose();
